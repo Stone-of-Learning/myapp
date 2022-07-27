@@ -12,25 +12,8 @@ declare namespace API {
     email: string;
     userStatus: number;
     createTime: Data;
-    userRole:number
-    // name?: string;
-    // avatar?: string;
-    // userid?: string;
-    // email?: string;
-    // signature?: string;
-    // title?: string;
-    // group?: string;
-    // tags?: { key?: string; label?: string }[];
-    // notifyCount?: number;
-    // unreadCount?: number;
-    // country?: string;
-    // access?: string;
-    // geographic?: {
-    //   province?: { label?: string; key?: string };
-    //   city?: { label?: string; key?: string };
-    // };
-    // address?: string;
-    // phone?: string;
+    userRole: number;
+    planetCode: string;
   };
 
   type LoginResult = {
@@ -84,6 +67,16 @@ declare namespace API {
     userPassword?: string;
     checkPassword?: string;
     type?: string;
+    planetCode?: string;
+  };
+  /**
+   * 通用返回类
+   */
+  type BaseResponse<T> = {
+    code: number;
+    data: T;
+    message: string;
+    description: string;
   };
 
   type ErrorResponse = {

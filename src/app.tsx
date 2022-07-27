@@ -35,14 +35,13 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const user = await queryCurrentUser();
-      return user;
+      return await queryCurrentUser();
     } catch (error) {
       history.push(loginPath);
     }
     return undefined;
   };
-  // 如果是登录页面，执行
+  // 如果是登录页面，不执行
   if (NO_NEED_LOGIN_WHITE_LIST.includes(history.location.pathname)) {
     return {
       fetchUserInfo,
@@ -50,6 +49,7 @@ export async function getInitialState(): Promise<{
     };
   } else {
     const currentUser = await fetchUserInfo();
+    console.log(currentUser);
     return {
       fetchUserInfo,
       currentUser,
@@ -65,7 +65,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     disableContentMargin: false,
     waterMarkProps: {
       content: initialState?.currentUser?.username,
-    }, 
+      // content: 'snn',
+    },
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
